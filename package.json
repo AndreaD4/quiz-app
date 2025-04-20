@@ -1,0 +1,28 @@
+{
+  "name": "diet-app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@hotwired/turbo-rails": "^7.1.1",
+    "@popperjs/core": "^2.10.2",
+    "@webpixels/css": "^1.1.92",
+    "apexcharts": "^3.35.2",
+    "bootstrap": "^5.1.1",
+    "choices.js": "^10.1.0",
+    "cocoon-js": "^0.0.5",
+    "esbuild": "^0.13.3",
+    "esbuild-rails": "^1.0.3",
+    "feather-icons": "^4.29.0",
+    "flatpickr": "^4.6.13",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.2",
+    "perfect-scrollbar": "^1.5.5",
+    "sass": "^1.42.1",
+    "select2": "4.0.13",
+    "vanillajs-datepicker": "^1.2.0"
+  },
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "build:css": "sass ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css --load-path=node_modules"
+  }
+}

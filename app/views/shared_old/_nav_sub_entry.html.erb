@@ -1,0 +1,23 @@
+<li class="nav-item">
+  <% if sub_entry[:children].present? %>
+    <a class="nav-link collapsed" href="#<%= sub_entry[:aria_controls] %>" data-bs-toggle="collapse" role="button" aria-expanded="<%= aria_expanded_if_current_page(entry: sub_entry) %>" aria-controls="<%= sub_entry[:aria_controls] %>">
+      <% if sub_entry[:icon].present? %>
+        <i class="h5 bi <%= sub_entry[:icon] %>"></i>
+      <% end %>
+      <%= sub_entry[:title] %>
+    </a>
+    <div class="collapse <%= collapse_show_if_current_page(entry: sub_entry) %>" id="<%= sub_entry[:aria_controls] %>" style="">
+      <ul class="nav nav-sm flex-column">
+        <%= render partial: 'shared/nav_sub_entry', collection: sub_entry[:children], as: :sub_entry, locals: { parents: parents + [sub_entry] } %>
+      </ul>
+    </div>
+  <% else %>
+    <a class="nav-link py-2 <%= class_if_current_page(entry: sub_entry) %>" href="<%= sub_entry[:href] %>" title="<%= sub_entry[:title] %>" data-filter-tags="<%= filter_tags_from_title((parents + [sub_entry]).collect { |item| item[:title] }.join(' ')) %>">
+      <% if sub_entry[:icon].present? %>
+        <i class="h5 bi <%= sub_entry[:icon] %>"></i>
+      <% end %>
+      <%= sub_entry[:title] %>
+    </a>
+  <% end %>
+</li>
+

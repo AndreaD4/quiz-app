@@ -1,0 +1,72 @@
+- content_for(:title, Report.model_name.human(count: 2))
+
+%h3.mb-3
+  %i.material-icons-two-tone file_copy
+  = Report.model_name.human
+
+.row
+  .col-md-12
+    .card
+      .card-header.pb-0.pt-3
+        .row.align-items-center
+          %h5.mb-3
+            %span= "Elenco #{Report.model_name.human}"
+      .card-body
+        #accordionReport.accordion.card
+          .accordion-item
+            %h2#headingFood.accordion-header
+              %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseFood", "data-bs-toggle" => "collapse", type: "button"}
+                = Food.model_name.human(count: 2)
+            #collapseFood.accordion-collapse.collapse{"aria-labelledby" => "headingFood", "data-bs-parent" => "#accordionReport", style: ""}
+              .accordion-body
+                = form_tag manager_reports_path, class: 'form-horizontal form-report-filters', id: 'form-report-foods' do
+                  = hidden_field_tag 'report[model_name_of]', 'Food'
+                  = hidden_field_tag 'report[method_name]', 'list_foods'
+                  = hidden_field_tag 'report[report_name]', 'Alimenti'
+                  = hidden_field_tag 'report[type]', 'archives'
+                  = hidden_field_tag 'report[filters]'
+                  .row
+                    .col-sm-12.col-md-12.col-lg-6
+                      .form-group
+                        %label.form-label{style: 'min-height: 21px'}
+                        = button_tag t('helpers.button.confirm'), class: 'btn btn-sm btn-primary form-control report_button_submit'
+
+          .accordion-item
+            %h2#headingCustomer.accordion-header
+              %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseCustomer", "data-bs-toggle" => "collapse", type: "button"}
+                = Customer.model_name.human(count: 2)
+            #collapseCustomer.accordion-collapse.collapse{"aria-labelledby" => "headingCustomer", "data-bs-parent" => "#accordionReport", style: ""}
+              .accordion-body
+                = form_tag manager_reports_path, class: 'form-horizontal form-report-filters', id: 'form-report-customers' do
+                  = hidden_field_tag 'report[model_name_of]', 'Customer'
+                  = hidden_field_tag 'report[method_name]', 'list_customers'
+                  = hidden_field_tag 'report[report_name]', "Pazienti"
+                  = hidden_field_tag 'report[type]', 'archives'
+                  = hidden_field_tag 'report[filters]'
+                  .row
+                    .col-sm-12.col-md-12.col-lg-6
+                      .form-group
+                        %label.form-label{style: 'min-height: 21px'}
+                        = button_tag t('helpers.button.confirm'), class: 'btn btn-sm btn-primary form-control report_button_submit'
+
+          .accordion-item
+            %h2#headingDiet.accordion-header
+              %button.accordion-button.collapsed{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseDiet", "data-bs-toggle" => "collapse", type: "button"}
+                = Diet.model_name.human(count: 2)
+            #collapseDiet.accordion-collapse.collapse{"aria-labelledby" => "headingDiet", "data-bs-parent" => "#accordionReport", style: ""}
+              .accordion-body
+                = form_tag manager_reports_path, class: 'form-horizontal form-report-filters', id: 'form-report-diets' do
+                  = hidden_field_tag 'report[model_name_of]', 'Diet'
+                  = hidden_field_tag 'report[method_name]', 'list_diets'
+                  = hidden_field_tag 'report[report_name]', 'Diete'
+                  = hidden_field_tag 'report[type]', 'archives'
+                  = hidden_field_tag 'report[filters]'
+                  .row
+                    .col-sm-12.col-md-12.col-lg-6
+                      .form-group
+                        %label.form-label{style: 'min-height: 21px'}
+                        = button_tag t('helpers.button.confirm'), class: 'btn btn-sm btn-primary form-control report_button_submit'
+
+        = turbo_stream_from :reports
+        = turbo_frame_tag :reports do
+          = render 'managers/reports/reports', reports: @reports

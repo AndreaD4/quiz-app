@@ -1,0 +1,75 @@
+it:
+  devise:
+    confirmations:
+      new:
+        cancel: Annulla
+        enter_information: 'Inserisci la tua mail per ricevere le istruzioni:'
+        resend: Reinvia
+        resend_confirmation: Reinvia conferma
+    errors:
+      messages:
+        not_saved:
+          one: 'Si è verificato un errore:'
+          other: 'Si sono verificati %{count} errori:'
+    mailer:
+      confirmation_instructions:
+        welcome_html: Benvenuto <b>%{full_name}</b>!
+        click_to_confirm: Clicca il pulsante sottostante per confermare la tua iscrizione.
+        else_ignore: Se non hai richiesto l'iscrizione al sito, ignora questa email.
+        confirm_button: Conferma
+      reset_password_instructions:
+        hello_html: Ciao <b>%{full_name}</b>!
+        reset_password_request: Qualcuno ha richiesto un link per cambiare la tua password. Puoi farlo utilizzando il pulsante sottostante.
+        change_password: Cambia password
+        else_ignore: Se non hai richiesto questa modifica, per favore ignora questa email.
+        password_wont_change: La tua password non cambierà finché tu non farai accesso al link sopra riportato e ne creerai una nuova.
+      unlock_instructions:
+        hello_html: Ciao <b>%{full_name}</b>!
+        account_locked: Il tuo account è stato bloccato a causa di numerosi tentativi di accesso falliti.
+        click_to_unlock: "Clicca il pulsante sottostante per sbloccare l'account:"
+        unlock_button: Sblocca
+    passwords:
+      new:
+        enter_information: Inserisci la tua email per ricevere le istruzioni
+        back_to_login: Ritorna al login
+        retrieve_password: Recupera Password
+        send_me: Invia!
+    registrations:
+      new:
+        back_to_login: Ritorna al login
+        first_name: "Nome"
+        last_name: "Cognome"
+        business_name: "Ragione sociale"
+        vat_code: "Partita IVA"
+        tax_code: "Codice Fiscale"
+        email: E-Mail
+        enter_your_details_to_begin: 'Inserisci i tuoi dati per iniziare:'
+        new_user_registration: Nuova registrazione
+        password: Password
+        repeat_password: Ripeti Password
+        register: Registrati
+        reset: Reset
+        registration_instructions: "Registrati per accedere e consultare i tuoi dati, dopo aver compilato il modulo sottostante ti verrà inviata un'email per confermare l'indirizzo email inserito."
+        password_instructions: "La password deve contenere almeno 8 caratteri, una lettera minuscola, una lettera maiuscola ed un numero."
+        district: "Comune di residenza"
+    sessions:
+      new:
+        enter_information: Inserisci i dati di accesso
+        email: E-Mail
+        password: Password
+        remember_me: " Ricordami"
+        login: Accedi
+        forgot_password: Password persa?
+        sign_up: Vuoi registrarti?
+        resend_confirmation: Non hai ricevuto la mail di conferma?
+        resend_unlock: Non hai ricevuto la mail di sblocco?
+        sign_in_with: Accedi con %{provider}
+    unlocks:
+      new:
+        cancel: Annulla
+        enter_information: 'Inserisci la tua mail per ricevere le istruzioni:'
+        resend: Reinvia
+        resend_unlock: Reinvia email di sblocco
+    failure:
+      user:
+        account_expired: Non puoi accedere al portale perchè il tuo account è scaduto.

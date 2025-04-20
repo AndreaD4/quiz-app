@@ -1,0 +1,14 @@
+@import '../fonts/tabler-icons.min';
+@import '../fonts/feather';
+@import '../fonts/fontawesome';
+@import '../fonts/material';
+
+@import 'scss/style';
+@import 'scss/customizer';
+
+@import 'vanillajs-datepicker/sass/datepicker-bs5';
+@import "select2/dist/css/select2";
+@import 'flatpickr/dist/flatpickr.min';
+
+@import 'custom';
+@import 'user/select2-cust';

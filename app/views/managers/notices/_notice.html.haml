@@ -1,0 +1,21 @@
+= turbo_frame_tag dom_id(notice) do
+  .p-2{class: "#{'bg-yellow-100' unless notice.seen}"}
+    .border-bottom.media
+      %a{:href => "#!"}
+        = image_tag "news/img-news-2.jpg", alt: "...", class: "wid-90 rounded"
+      .media-body.ms-3
+        %p.float-end.mb-0{class: "#{notice.seen ? 'text-muted' : 'text-success'}"}
+          %small= "#{time_ago_in_words(notice.created_at, include_seconds: true)} fa"
+        %a{:href => "#!"}
+          %h6
+            = notice.title
+        %p.mb-2
+          = notice.notes
+        = button_to toggle_seen_manager_notice_path(notice.id), class: 'btn btn-sm btn-outline-warning' do
+          - if notice.seen
+            %i.feather.icon-eye-off
+            = t('helpers.button.unseen')
+          - else
+            %i.feather.icon-eye
+            = t('helpers.button.seen')
+  .mb-2

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%= render 'shared/head' %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "auth", "data-turbo-track": "reload", defer: true %>
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class=text-center">
+
+    <div class="auth-content p-0">
+      <% if resource.is_a? Manager %>
+        <% unless flash.empty? %>
+
+          <%= render partial: 'layouts/partials/flashes' %>
+        <% end %>
+      <% end %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<!-- Required Js -->
+<!--<script src="../assets/js/vendor-all.js"></script>-->
+
+</body>
+
+</html>

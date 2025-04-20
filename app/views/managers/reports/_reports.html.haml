@@ -1,0 +1,23 @@
+.space-4
+.table-responsive
+  %table.table.table-condensed.border-bottom
+    %thead
+      %tr
+        %th{colspan: 2}= Report.human_attribute_name(:aasm_state)
+        %th= Report.human_attribute_name(:method_name)
+        %th.text-center= Report.human_attribute_name(:filters)
+        %th.text-center{style: 'min-width:100px'}= 'Avanzamento'
+        %th.text-center= Report.human_attribute_name(:started_at)
+        %th.text-center= Report.human_attribute_name(:ended_at)
+        %th.text-center= Report.human_attribute_name(:file)
+    %tbody#reports_table.replace-feather-icon.replace-bs-toggle
+      = render reports
+      - unless reports.exists?
+        %td.text-center{colspan: '100%'}= t('misc.no_elements')
+
+- unless reports.empty?
+  .card-footer.pb-0{data: {controller: 'pagination'}}
+    - if reports.count > 5
+      .d-flex.justify-content-between
+        %div= select_tag 'per_page', options_for_select([10, 15, 25, 50, 100], @per_page.to_i), class: 'form-select', style: 'min-width: 75px', data: {action: 'change->pagination#reloadTable'}
+        %div= will_paginate reports, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination)

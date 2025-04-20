@@ -1,0 +1,62 @@
+<nav class="navbar navbar-light position-lg-sticky top-lg-0 d-none d-lg-block overlap-10 flex-none bg-white border-bottom px-0 py-3" id="topbar">
+  <div class="justify-content-end container-fluid">
+    <div class="navbar-user d-none d-sm-block">
+      <div class="hstack gap-3 ms-4">
+
+        <!-- Notifications -->
+        <div class="dropdown" data-controller="notices">
+          <a href="#" class="nav-link px-3 text-base text-muted text-opacity-70 text-opacity-100-hover" id="dropdown-notifications" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-bell-fill"></i></a>
+          <%#= link_to manager_notices_path, class: "nav-link px-3 text-base text-muted text-opacity-70 text-opacity-100-hover", id: "dropdown-notifications", aria_expanded: "false", method: :get, data: { turbo_frame: 'notices', action: 'notices#showDropdown'} do %>
+          <%#= link_to manager_notices_path, class: "nav-link px-3 text-base text-muted text-opacity-70 text-opacity-100-hover", id: "dropdown-notifications", aria_expanded: "false", method: :get, data: { bs_toggle: 'dropdown' } do %>
+          <!--            <i class="bi bi-bell-fill"></i>-->
+          <%# end %>
+
+          <div class="dropdown-menu dropdown-menu-end px-2" aria-labelledby="dropdown-notifications" id="notices-dropdown">
+            <div class="dropdown-item d-flex align-items-center">
+              <h6 class="dropdown-header p-0 m-0 font-semibold">Notifiche</h6>
+              <!--              <a href="#" class="text-sm font-semibold ms-auto">Cancella tutte</a>-->
+            </div>
+            <%= render 'managers/notices/notices', notices: @notices %>
+            <!--            <div class="dropdown-divider"></div>-->
+            <!--            <div class="dropdown-item py-2 text-center">-->
+            <!--              <a href="#" class="font-semibold text-muted text-primary-hover">Mostra tutti</a>-->
+            <!--            </div>-->
+          </div>
+        </div>
+
+        <!-- Profile -->
+        <div class="dropdown">
+          <a class="d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+            <div>
+              <!--              <div>-->
+              <!--                <div class="avatar bg-tertiary text-white rounded-circle"><%#= current_manager.initial_letters %></div>-->
+              <!--              </div>-->
+              <div class="avatar avatar-sm bg-warning rounded-circle text-white"><%= current_manager.initial_letters %></div>
+            </div>
+            <div class="d-none d-sm-block ms-3"><span class="h6"><%= current_manager.full_name %></span></div>
+            <div class="d-none d-md-block ms-md-2"><i class="bi bi-chevron-down text-muted text-xs"></i></div>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item" href="#"><i class="bi bi-pencil me-3"></i>Modifica Profilo</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to current_user.present? ? destroy_user_session_path : destroy_manager_session_path, class: 'dropdown-item', data: { "turbo-method": :delete } do %>
+              <i class="bi bi-box-arrow-left me-3"></i> Logout
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<header>
+  <div class="container-fluid">
+    <div class="border-bottom pt-6 pb-4">
+      <div class="row align-items-center">
+        <div class="col-sm col-12"><h1 class="h2 ls-tight"><%= yield(:heading) %></h1></div>
+        <%= yield(:right_block) %>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,13 @@
+<ul class="navbar-nav">
+  <% SidebarEntry.all.each do |entry| %>
+    <% if entry[:group_title].present? %>
+      <li><span class="nav-link text-xs font-semibold text-uppercase text-muted ls-wide">Resources</span></li>
+    <% else %>
+      <%= render partial: 'shared/nav_sub_entry', collection: entry[:children], as: :sub_entry, locals: { parents: [] } %>
+    <% end %>
+  <% end %>
+</ul>
+
+
+
+<!-- Navigation -->

@@ -1,0 +1,97 @@
+- content_for(:title, 'Dashboard')
+
+%h3.mb-3
+  %i.feather.icon-users
+  = "Dashboard"
+
+-# - content_for :breadcrumb do
+-#   .page-header
+-#     .page-block
+-#       .row.align-items-center
+-#         .col-md-6
+-#           .page-header-title
+-#             %h5.m-b-10 Dashboard
+-#           %ul.breadcrumb
+-#             %li.breadcrumb-item
+-#               %a{:href => manager_root_path} Home
+-#             %li.breadcrumb-item Dashboard
+
+.row
+  .col-xl-3.col-md-6.col-sm-12
+    %a.card{href: "#{manager_foods_path(redirect_url: manager_root_path)}"}
+      .card-body
+        .row.align-items-center.m-l-0
+          .col-auto
+            %i.fab.fa-gulp.f-36.text-danger
+          .col-auto
+            %h6.text-muted.m-b-10= Food.model_name.human(count: 2)
+            %h2.m-b-0= number_with_delimiter(current_company.foods.count)
+  .col-xl-3.col-md-6.col-sm-12
+    %a.card{href: "#{manager_pathologies_path(redirect_url: manager_root_path)}"}
+      .card-body
+        .row.align-items-center.m-l-0
+          .col-auto
+            %i.fas.fa-biohazard.f-36.text-black
+          .col-auto
+            %h6.text-muted.m-b-10= Pathology.model_name.human(count: 2)
+            %h2.m-b-0= number_with_delimiter(current_company.pathologies.count)
+  .col-xl-3.col-md-6.col-sm-12
+    %a.card{href: "#{manager_customers_path(redirect_url: manager_root_path)}"}
+      .card-body
+        .row.align-items-center.m-l-0
+          .col-auto
+            %i.fas.fa-users.f-36.text-info
+          .col-auto
+            %h6.text-muted.m-b-10= Customer.model_name.human(count: 2)
+            %h2.m-b-0= number_with_delimiter(current_company.customers.count)
+  .col-xl-3.col-md-6.col-sm-12
+    %a.card{href: "#{manager_diets_path(redirect_url: manager_root_path)}"}
+      .card-body
+        .row.align-items-center.m-l-0
+          .col-auto
+            %i.fas.fa-apple-alt.f-36.text-success
+          .col-auto
+            %h6.text-muted.m-b-10= Diet.model_name.human(count: 2)
+            %h2.m-b-0= number_with_delimiter(current_company.diets.count)
+  .col-xl-3.col-md-6.col-sm-12
+    %a.card{href: "#{manager_appointments_path(redirect_url: manager_root_path)}"}
+      .card-body
+        .row.align-items-center.m-l-0
+          .col-auto
+            %i.fas.fa-calendar-alt.f-36.text-warning
+          .col-auto
+            %h6.text-muted.m-b-10= Appointment.model_name.human(count: 2)
+            %h2.m-b-0= number_with_delimiter(current_company.appointments.count)
+  .col-xl-3.col-md-6.col-sm-12
+    %a.card{href: "#{manager_documents_path(redirect_url: manager_root_path)}"}
+      .card-body
+        .row.align-items-center.m-l-0
+          .col-auto
+            %i.fas.fa-file-alt.f-36.text-primary
+          .col-auto
+            %h6.text-muted.m-b-10= Document.model_name.human(count: 2)
+            %h2.m-b-0= number_with_delimiter(current_company.documents.count)
+
+-#.row
+-#  / [ form-element ] start
+-#  .col-sm-12
+-#    .card
+-#      .card-header
+-#        %h5 Preview
+-#      .card-body
+-#        %form
+-#          .form-group.row
+-#            %label.col-form-label.col-lg-3.col-sm-12.text-lg-end
+-#              Helper
+-#              Button
+-#            .col-lg-4.col-md-9.col-sm-12
+-#              .input-group.date
+-#                %input#pc-datepicker-3.form-control{:type => "text", :value => "05/20/2017"}/
+-#                %span.input-group-text
+-#                  %i.feather.icon-calendar
+-#          .form-group.row
+-#            %label.col-form-label.col-lg-3.col-sm-12.text-lg-end
+-#              Simple
+-#              Input
+-#            .col-lg-4.col-md-9.col-sm-12
+-#              %input#pc-daterangepicker-1.form-control{:placeholder => "Select time", :type => "text"}/

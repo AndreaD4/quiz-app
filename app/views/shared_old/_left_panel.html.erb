@@ -1,0 +1,46 @@
+<!-- Vertical Navbar -->
+<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-dark bg-surface-dark border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
+  <div class="container-fluid" >
+    <!-- Toggler -->
+    <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Brand -->
+    <%= render 'shared/logo' %>
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="sidebarCollapse">
+      <%= render 'shared/nav' %>
+<!--      <hr class="navbar-divider my-3 opacity-70">-->
+      <ul class="navbar-nav">
+<!--        <li><span class="nav-link text-xs font-semibold text-uppercase opacity-80 text-white ls-wide">Manutenzione</span></li>-->
+<!--        <li class="nav-item"><a class="nav-link py-2" href="<%#=manager_devices_path %>"><i class="bi bi-phone-fill"></i> Dispositivi</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link py-2 d-flex align-items-center" href="#"><i class="bi bi-journals"></i>-->
+<!--            <span>Changelog</span>-->
+<!--            <span class="badge badge-sm bg-soft-success text-success rounded-pill ms-auto">v1.0.0</span></a></li>-->
+      </ul>
+      <div class="mt-auto"></div>
+      <div class="my-4 px-lg-6 position-relative">
+        <div class="dropup w-full">
+          <button class="btn-primary d-flex w-full py-3 ps-3 pe-4 align-items-center shadow shadow-3-hover rounded-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="me-3 avatar avatar-sm bg-warning rounded-circle text-white"><%= current_manager.initial_letters %></div>
+            <span class="flex-fill text-start text-sm font-semibold"><%= current_manager.full_name %></span><span><i class="bi bi-chevron-expand text-black"></i></span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end w-full">
+            <div class="dropdown-header"><span class="d-block text-sm text-muted mb-1">Signed in as</span>
+              <span class="d-block text-heading font-semibold"><%= current_manager.full_name %></span></div>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><i class="bi bi-house me-3"></i>Home
+            </a><a class="dropdown-item" href="#"><i class="bi bi-pencil me-3"></i>Profile
+          </a><a class="dropdown-item" href="#"><i class="bi bi-gear me-3"></i>Settings</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to current_user.present? ? destroy_user_session_path : destroy_manager_session_path, class: 'dropdown-item', data: { "turbo-method": :delete } do %>
+              <i class="bi bi-box-arrow-left me-3"></i> Logout
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

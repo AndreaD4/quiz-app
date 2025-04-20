@@ -1,0 +1,45 @@
+<!-- [ auth-signin ] start -->
+
+
+      <div class="card">
+        <div class="row align-items-center text-center">
+          <div class="col-md-12">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { class: 'needs-validation', novalidate: "" }) do |f| %>
+              <div class="card-body">
+                <span><%= current_company.name %></span>
+                <img alt="logo" src="/logo-erica.png" class="img-fluid mb-4" style="max-height: 200px">
+                <%# if resource.is_a? Manager %>
+                <%# unless flash.empty? %>
+                <!--                  <div class=text-center">-->
+                <%#= render partial: 'layouts/partials/flashes' %>
+                <!--                  </div>-->
+                <%# end %>
+                <%# end %>
+                <h4 class="mb-3 f-w-400">Area Riservata</h4>
+                <div class="input-group mb-3">
+                  <span class="input-group-text"><i data-feather="mail"></i></span>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "La tua email", required: "required" %>
+                  <!--                <input type="email" class="form-control" placeholder="Email address">-->
+                </div>
+                <div class="input-group mb-4">
+                  <span class="input-group-text"><i data-feather="lock"></i></span>
+                  <!--                <input type="password" class="form-control" placeholder="Password">-->
+                  <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: "Password", required: "required" %>
+                </div>
+                <% if devise_mapping.rememberable? %>
+                  <div class="form-group  mt-2">
+                    <div class="form-check">
+                      <%= f.check_box :remember_me, class: 'form-check-input', id: 'remember_me' %>
+                      <%= f.label 'Ricordami', class: 'form-check-label', for: 'remember_me' %>
+                    </div>
+                  </div>
+                <% end %>
+                <%= f.submit "Accedi", class: 'btn btn-block btn-primary mb-4', data: { turbo: false } %>
+                <p class="mb-0 text-muted"><%= render "devise/shared/links" %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+<!-- [ auth-signin ] end -->

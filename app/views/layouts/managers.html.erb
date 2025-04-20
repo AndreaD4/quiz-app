@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%= render 'shared/head' %>
+  <%= render 'shared/head-bottom-link' %>
+</head>
+<%= render 'shared/layout-vertical' %>
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+  <div class="pcoded-content">
+    <%= yield :breadcrumb %>
+    <%= yield %>
+  </div>
+</div>
+<!-- [ Main Content ] end -->
+<%= render 'shared/footer' %>
+<!-- Apex Chart -->
+<!--<script src="../assets/js/plugins/apexcharts.min.js"></script>-->
+<!--<script src="../assets/js/pages/dashboard-sale.js"></script>-->
+<%#= render 'shared/footer-bottom-link' %>
+</body>
+
+</html>

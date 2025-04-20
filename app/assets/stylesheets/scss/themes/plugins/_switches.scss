@@ -1,0 +1,40 @@
+/**  =====================
+      Switches css start
+==========================  **/
+.slow .switch-group {
+    transition: left 0.7s;
+    -webkit-transition: left 0.7s;
+}
+
+.fast .switch-group {
+    transition: left 0.1s;
+    -webkit-transition: left 0.1s;
+}
+
+.quick .switch-group {
+    transition: none;
+    -webkit-transition: none;
+}
+
+.table.switch-table {
+
+    th,
+    td {
+        vertical-align: middle;
+        padding: 0.45rem .25rem;
+
+        .btn {
+            margin-bottom: 0;
+        }
+    }
+
+}
+.switch {
+    @each $color, $value in $theme-colors {
+        &.btn-outline-#{$color} .switch-handle {
+            background-color: $value !important;
+            border-color: $value !important;
+        }
+    }
+}
+/**====== Switches css end ======**/

@@ -1,0 +1,10 @@
+development:
+  adapter: postgresql
+
+test:
+  adapter: test
+
+production:
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
+  channel_prefix: quiz_app_production

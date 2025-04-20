@@ -1,0 +1,47 @@
+- content_for(:title, Notice.model_name.human(count: 2))
+
+%h3.mb-3
+  %i.material-icons-two-tone notifications
+  = t('activerecord.models.notice.other')
+  .float-end
+    .d-inline-block
+      #records_count.text-sm.m-r-5
+        = number_with_delimiter @notices.count
+        %span record
+
+.row
+  .col-md-12
+    .card
+      .card-header.pb-0.pt-3
+        .row.align-items-center
+          .col-sm-6
+            %h5.pt-3.pb-3
+              %span= "Elenco #{Notice.model_name.human(count: 2)}"
+
+      .card-body
+        #filters_data{data: {filters_count: params_count(@filters), records_count: @notices.count}}
+          .table-responsive
+            %table.table.table-xs.table-bordered.table-hover.mb-0
+              %thead
+                %tr
+                  %th.text-center{:scope => "col"}= Notice.model_name.human
+                  %th
+              %tbody#notices_table
+                - @notices.each do |notice|
+                  %tr
+                    %td= notice.try(:description)
+                    %td.td-compact
+                      = link_to toggle_seen_manager_notice_path(notice.id), class: 'btn btn-sm btn-primary' do
+                        - if notice.seen
+                          %i.feather.icon-eye-off
+                        - else
+                          %i.feather.icon-eye
+                - unless @notices.exists?
+                  %td.text-center{colspan: '100%'}= t('misc.no_elements')
+
+          - unless @notices.empty?
+            .card-footer.pb-0{data: {controller: 'pagination'}}
+              - if @notices.count > 10
+                .d-flex.justify-content-between
+                  %div= select_tag 'per_page', options_for_select([10, 15, 25, 50, 100], @per_page.to_i), class: 'form-select', style: 'min-width: 75px', data: {action: 'change->pagination#reloadTable'}
+                  %div= will_paginate @notices, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination)

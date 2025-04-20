@@ -1,0 +1,359 @@
+it:
+  helpers:
+    button:
+      confirm: "Conferma"
+      cancel: "Annulla"
+      save: "Salva"
+      close: "Chiudi"
+      apply: "Applica"
+      reset: "Reimposta"
+    table:
+      empty: "Nessun elemento"
+  misc:
+    actions: "Azioni"
+    new: "Nuovo"
+    new_f: "Nuova"
+    edit: "Modifica"
+    filter: "Filtra"
+    filters: "Filtri"
+    list: "Lista"
+    are_you_sure: "Sei sicuro?"
+    select: "Seleziona..."
+    close: "Chiudi"
+    no_elements: "Nessun Elemento"
+    all: "Tutti"
+    back: "Indietro"
+    period: "Periodo"
+    y_e_s: "Si"
+    no: "No"
+  activerecord:
+    models:
+      customer:
+        one: Paziente
+        other: Pazienti
+      customer/measure:
+        one: Misura
+        other: Misure
+      food:
+        one: Alimento
+        other: Alimenti
+      food_category:
+        one: Categoria Alimenti
+        other: Categorie Alimenti
+      diet:
+        one: Dieta
+        other: Diete
+      diet/detail:
+        one: Dettaglio
+        other: Dettagli
+      report:
+        one: Report
+        other: Report
+      notice:
+        one: Notifica
+        other: Notifiche
+      pathology:
+        one: Patologia
+        other: Patologie
+      rate:
+        one: Tariffa
+        other: Tariffe
+      document:
+        one: Documento
+        other: Documenti
+      document_detail:
+        one: Dettaglio
+        other: Dettagli
+      appointment:
+        one: Appuntamento
+        other: Appuntamenti
+    attributes:
+      company:
+        host: Host
+        name: Nome
+        business_name: Ragione sociale
+        address: Indirizzo
+        city: Città
+        zip_code: CAP
+        province: Provincia
+        nationality: Nazione
+        tax_code: Codice fiscale
+        vat_code: Partita IVA
+        backup_file: Backup
+        phone: Telefono
+        email: Email
+        iban: IBAN
+        bank: Banca
+        trasmitter_vat_code: Partita IVA Trasmittente
+        trasmitter_phone: Telefono Trasmittente
+        trasmitter_email: Email Trasmittente
+        tax_regime: Regime Fiscale
+        last_sdi_code: Ultimo Progressivo SDI
+        rea_number: N. Iscrizione REA
+        partner_unique: Socio Unico
+        liquidation_state: Stato Liquidazione
+        diet_notes: Note Dieta
+        calendar_reminders: Tempo Avviso Calendario (minuti)
+      appointment:
+        appointment_date: Data Appuntamento
+        rate_id: Tipologia
+        customer_id: Paziente
+        notes: Note
+        state: Stato
+      pathology:
+        name: Nome
+        notes: Note Interne
+        diet_notes: Note Dieta
+      rate:
+        description: Descrizione
+        amount: Importo
+        type_of: Tipo
+        duration: Durata (minuti)
+      document:
+        type_of: Tipo
+        document_number: Numero
+        sectional_code: Sezionale
+        document_date: Data
+        main_document_id: Documento Collegato
+        customer_id: Paziente
+        amount: Imponibile
+        total_vat: IVA
+        total_amount: Totale Fattura
+        total_paid: Totale Pagato
+        attachments: Allegati
+        electronics: XML
+        blocked: Bloccata
+        payment_status: Stato pagamento
+      document_detail:
+        rate_id: Tariffa
+        quantity: Quantità
+        unit_amount: Prezzo Unitario
+        total_amount: Totale
+        vat_code_id: IVA
+        discount: Sconto %
+        discount_value: Sconto
+        notes: Note
+      report:
+        aasm_state: Stato
+        aasm_state/blocked: Errore
+        aasm_state/created: In attesa
+        aasm_state/exported: Completato
+        aasm_state/started: In elaborazione
+        date_range: Periodo
+        ended_at: Fine
+        method_name: Report
+        filters: Filtri Applicati
+        started_at: Inizio
+      notice:
+        title: Titolo
+        notes: Testo
+        seen: Visualizzato
+      customer:
+        code: Codice
+        first_name: Nome
+        last_name: Cognome
+        tax_code: Codice Fiscale
+        phone: Telefono
+        gender: Sesso
+        city: Città Residenza
+        province: Provincia Residenza
+        street: Indirizzo Residenza
+        notes: Note
+        email: Email
+        mobile_phone: Cellulare
+        zip_code: CAP Residenza
+        pec: PEC
+        sdi_code: Codice SDI
+        birth_date: Data Nascita
+        district_id: Città di Nascita
+        country_id: Stato di Nascita
+        pathology_ids: Patologie
+        food_history: Storia Alimentare
+        particular_condition: Condizioni Particolari
+        target: Obiettivo
+        breakfast: Colazione
+        luncheon: Spuntino
+        lunch: Pranzo
+        snack: Merenda
+        dinner: Cena
+        saturday: Sabato
+        sunday: Domenica
+        favourite_foods: Cibi Preferiti
+        unfavourite_foods: Cibi da Evitare
+        sweetened_coffee_flag: Caffè Zuccherato
+        sugar_quantity: Quantità Zucchero
+      customer/measure:
+        measure_date: Data Misura
+        type_of: Tipo
+        activity_level: Livello di Attività Fisica
+        weight: Peso (Kg)
+        height: Altezza (cm)
+        waist_circumference: Circonferenza vita (cm)
+        hips_circumference: Circonferenza fianchi (cm)
+        arm_circumference: Circonferenza braccia (cm)
+        suprailiac_fold: Plica Sovrailiaca (mm)
+        subscapular_fold: Plica Sottoscapolare (mm)
+        bicipital_fold: Plica Bicipitale (mm)
+        tricipital_fold: Plica Tricipitale (mm)
+        bmi: BMI
+        folds_sum: Somma delle pliche (cm)
+        body_density: Densità corporea
+        fat_percentage: Percentuale di grasso (%)
+        basal_metabolic_rate: Metabolismo Basale (Kcal)
+        energy_requirements: Fabbisogno Energetico (Kcal)
+        protein_requirement: Fabbisogno Proteine (g)
+        carbohydrate_requirement: Fabbisogno Carboidrati (g)
+        lipid_requirement: Fabbisogno Lipidi (g)
+        ideal_weight: Peso Ideale (BMI 18,5 - 24,9)
+        water_percentage: Percentuale di acqua (%)
+        visceral_fat: Grasso Viscerale
+        physique_raitings: Valutazione Fisica
+        muscle_mass: Massa muscolare (Kg)
+        bone_mass: Peso medio ossa (Kg)
+      food:
+        food_category_id: Categoria
+        code: Codice
+        name: Nome
+        edible_part: Parte Edibile (%)
+        water: Acqua (g)
+        proteins: Proteine (g)
+        lipids: Lipidi (g)
+        carbohydrates: Carboidrati (g)
+        starch: Amido (g)
+        soluble_sugars: Zuccheri solubili (g)
+        dietary_fiber: Fibra alimentare (g)
+        energy_kcal: Energia (Kcal)
+        energy_kj: Energia (KJ)
+        sodium: Sodio (mg)
+        potassium: Potassio (mg)
+        iron: Ferro (mg)
+        calcium: Calcio (mg)
+        phosphorus: Fosforo (mg)
+        vit_b1: Vit. B1 - Tiamina (mg)
+        vit_b2: Vit. B2 - Riboflavina (mg)
+        vit_b3: Vit. B3 - Niacina (mg)
+        vit_a: Vitamina A (μg)
+        vit_c: Vitamina C (mg)
+        vit_e: Vitamina E (mg)
+        notes: Note
+        portion_quantity: Quantità Porzione (g)
+      food_category:
+        code: Codice
+        name: Nome
+      diet:
+        customer_id: Paziente
+        customer_measure_id: Misure di Riferimento
+        diet_date: Data Dieta
+        description: Descrizione
+        start_date: Data Inizio
+        end_date: Data Fine
+        total_water: Tot. Acqua (g)
+        total_proteins: Tot. Proteine (g)
+        total_lipids: Tot. Lipidi (g)
+        total_carbohydrates: Tot. Carboidrati (g)
+        total_starch: Tot. Amido (g)
+        total_soluble_sugars: Tot. Zuccheri solubili (g)
+        total_dietary_fiber: Tot. Fibra alimentare (g)
+        total_energy_kcal: Tot. Energia (Kcal)
+        total_energy_kj: Tot. Energia (KJ)
+        total_sodium: Tot. Sodio (mg)
+        total_potassium: Tot. Potassio (mg)
+        total_iron: Tot. Ferro (mg)
+        total_calcium: Tot. Calcio (mg)
+        total_phosphorus: Tot. Fosforo (mg)
+        total_vit_b1: Tot. Vit. B1 (mg)
+        total_vit_b2: Tot. Vit. B2 (mg)
+        total_vit_b3: Tot. Vit. B3 (mg)
+        total_vit_a: Tot. Vit. A (μg)
+        total_vit_c: Tot. Vit. C (mg)
+        total_vit_e: Tot. Vit. E (mg)
+        notes: Note
+      diet/detail:
+        group_meal: Gruppo
+        food_id: Alimento
+        dow: Giorno
+        meal: Pasto
+        unit_energy: Kcal (100g)
+        quantity: Quantità (g)
+        portion: Porzione
+        water: Acqua (g)
+        proteins: Prot. (g)
+        lipids: Lip. (g)
+        carbohydrates: CHO (g)
+        starch: Amido (g)
+        soluble_sugars: Zuccheri solubili (g)
+        dietary_fiber: Fibra (g)
+        energy_kcal: Energia (Kcal)
+        energy_kj: Energia (KJ)
+        sodium: Na (mg)
+        potassium: K (mg)
+        iron: Fe (mg)
+        calcium: Ca (mg)
+        phosphorus: P (mg)
+        vit_b1: Vit. B1 (mg)
+        vit_b2: Vit. B2 (mg)
+        vit_b3: Vit. B3 (mg)
+        vit_a: Vit. A (μg)
+        vit_c: Vit. C (mg)
+        vit_e: Vit. E (mg)
+  enumerize:
+    customer:
+      gender:
+        male: Maschio
+        female: Femmina
+    customer/measure:
+      activity_level:
+        light: Leggero
+        moderate: Moderato
+        heavy: Pesante
+      type_of:
+        manual: Manuale
+        tool: Strumento
+    diet/detail:
+      group_meal:
+        group1: Alim. 1
+        group2: Alim. 2
+        group3: Alim. 3
+        group4: Alim. 4
+        group5: Alim. 5
+        group6: Alim. 6
+        group7: Alim. 7
+        group8: Alim. 8
+        group9: Alim. 9
+        group10: Alim. 10
+      dow:
+        monday: Lunedi
+        tuesday: Martedì
+        wednesday: Mercoledì
+        thursday: Giovedì
+        friday: Venerdì
+        saturday: Sabato
+        sunday: Domenica
+      meal:
+        breakfast: Colazione
+        luncheon: Spuntino
+        lunch: Pranzo
+        snack: Merenda
+        dinner: Cena
+    document:
+      type_of:
+        bill: DDT
+        invoice: Fattura
+        credit_note: Nota Credito
+        receipt: Scontrino
+      payment_status:
+        to_pay: Da Pagare
+        paid: Pagata
+        advance_payment: Acconto
+        expired: Scaduta
+        in_excess: In Eccesso
+    appointment:
+      state:
+        waiting: In Attesa
+        confirmed: Confermato
+        completed: Completato
+        cancelled: Cancellato
+    rate:
+      type_of:
+        performance: Prestazione
+        cost_item: Voce di Costo

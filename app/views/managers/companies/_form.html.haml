@@ -1,0 +1,167 @@
+.row
+  / [ form-element ] start
+  .col-lg-12
+    .card
+      = form_with model: [:manager, current_company], html: {class: 'needs-validation', novalidate: ""}, local: true, builder: BootstrapFormBuilder do |f|
+        .card-header
+          %h5 Dati
+        .card-body{data: {controller: 'companies'}}
+          .form-group.row.mb-1
+            .col-lg-6
+              .form-group.row.mb-1
+                .col-lg-4
+                  = f.group :host do
+                    = f.label :host
+                    = f.text_field :host, disabled: true
+                    = f.errors :host
+                .col-lg-8
+                  = f.group :name do
+                    = f.label :name
+                    = f.text_field :name, oninput: "this.value = this.value.toUpperCase()", disabled: true
+                    = f.errors :name
+            .col-lg-6
+              .form-group.row.mb-1
+                = f.group :backup_file do
+                  = f.label :backup_file
+                  .col-lg-3
+                  = link_to backup_manager_company_path, class: 'btn btn-dark me-2 mt-4 text-nowrap' do
+                    %i.me-2{"data-feather" => "arrow-right"}
+                    = 'Esegui Backup'
+          .form-group.row.mb-1
+            .col-lg-6
+              = f.group :business_name do
+                = f.label :business_name
+                = f.text_field :business_name, oninput: "this.value = this.value.toUpperCase()"
+                = f.errors :business_name
+            .col-lg-6
+              - if current_company.backup_file.attached?
+                .table-responsive
+                  %table.table.table-condensed
+                    %tbody
+                      %tr
+                        %td= current_company.backup_file.filename
+                        %td.td-compact.text-left
+                          = link_to rails_blob_path(current_company.backup_file, disposition: "attachment"), class: 'btn btn-primary btn-sm', data: {turbo: false} do
+                            %i.feather.icon-download
+          .form-group.row.mb-1
+            .col-lg-6
+              = f.group :tax_code do
+                = f.label :tax_code
+                = f.text_field :tax_code, oninput: "this.value = this.value.toUpperCase()"
+                = f.errors :tax_code
+            .col-lg-6
+              = f.group :vat_code do
+                = f.label :vat_code
+                = f.text_field :vat_code, oninput: "this.value = this.value.toUpperCase()"
+                = f.errors :vat_code
+          .form-group.row.mb-1
+            .col-lg-5
+              = f.group :address do
+                = f.label :address
+                = f.text_field :address
+                = f.errors :address
+            .col-lg-2
+              = f.group :city do
+                = f.label :city
+                = f.text_field :city
+                = f.errors :city
+            .col-lg-2
+              = f.group :zip_code do
+                = f.label :zip_code
+                = f.text_field :zip_code
+                = f.errors :zip_code
+            .col-lg-1
+              = f.group :province do
+                = f.label :province
+                = f.text_field :province
+                = f.errors :province
+            .col-lg-2
+              = f.group :nationality do
+                = f.label :nationality
+                = f.text_field :nationality
+                = f.errors :nationality
+          .form-group.row.mb-1
+            .col-lg-3
+              = f.group :phone do
+                = f.label :phone
+                = f.text_field :phone
+                = f.errors :phone
+            .col-lg-3
+              = f.group :email do
+                = f.label :email
+                = f.text_field :email
+                = f.errors :email
+            .col-lg-3
+              = f.group :iban do
+                = f.label :iban
+                = f.text_field :iban
+                = f.errors :iban
+            .col-lg-3
+              = f.group :bank do
+                = f.label :bank
+                = f.text_field :bank
+                = f.errors :bank
+          .form-group.row.mb-1
+            .col-lg-3
+              = f.group :trasmitter_vat_code do
+                = f.label :trasmitter_vat_code
+                = f.text_field :trasmitter_vat_code
+                = f.errors :trasmitter_vat_code
+            .col-lg-2
+              = f.group :trasmitter_phone do
+                = f.label :trasmitter_phone
+                = f.text_field :trasmitter_phone
+                = f.errors :trasmitter_phone
+            .col-lg-3
+              = f.group :trasmitter_email do
+                = f.label :trasmitter_email
+                = f.text_field :trasmitter_email
+                = f.errors :trasmitter_email
+            .col-lg-2
+              = f.group :tax_regime do
+                = f.label :tax_regime
+                = f.text_field :tax_regime
+                = f.errors :tax_regime
+            .col-lg-2
+              = f.group :last_sdi_code do
+                = f.label :last_sdi_code
+                = f.text_field :last_sdi_code
+                = f.errors :last_sdi_code
+          .form-group.row.mb-1
+            .col-lg-4
+              = f.group :rea_number do
+                = f.label :rea_number
+                = f.text_field :rea_number
+                = f.errors :rea_number
+            .col-lg-4
+              = f.group :partner_unique do
+                = f.label :partner_unique
+                = f.text_field :partner_unique
+            .col-lg-4
+              = f.group :liquidation_state do
+                = f.label :liquidation_state
+                = f.text_field :liquidation_state
+                = f.errors :liquidation_state
+          .form-group.row.mb-1
+            .col-lg-12
+              = f.group :diet_notes do
+                = f.label :diet_notes
+                = f.text_area :diet_notes, rows: 3, style: 'height: auto;min-height: 100px'
+                = f.errors :diet_notes
+          .form-group.row.mb-1
+            .col-lg-6
+              = f.group :calendar_reminders do
+                = f.label :calendar_reminders
+                = f.number_field :calendar_reminders
+                = f.errors :calendar_reminders
+        .card-footer
+          = f.button class: 'btn btn-primary me-2', data: {turbo: false} do
+            %i.me-2{"data-feather" => "check-circle"}
+            = t('helpers.button.save')
+          = link_to manager_root_path, class: 'btn btn-light me-2' do
+            %i.me-2{"data-feather" => "arrow-left"}
+            = t('helpers.button.cancel')
+          - if Rails.env.production?
+            = link_to poweroff_manager_company_path, class: 'btn btn-dark me-2' do
+              %i.me-2{"data-feather" => "power"}
+              = "Spegni Raspberry"

@@ -1,0 +1,551 @@
+<% if sub_entry[:group_title].present? %>
+  <li class="pc-item pc-caption"><label><%= sub_entry[:group_title] %></label></li>
+<% else %>
+  <li class="pc-item <%= 'pc-hasmenu' if sub_entry[:children].present? %><%= 'disabled' if sub_entry[:disabled] %><%= class_if_current_page(entry: sub_entry) %>">
+    <a class="pc-link" href="<%= sub_entry[:href] %>" title="<%= sub_entry[:title] %>" data-filter-tags="<%= filter_tags_from_title((parents + [sub_entry]).collect { |item| item[:title] }.join(' ')) %>">
+      <% if sub_entry[:icon].present? %>
+        <span class="pc-micon"><i class="material-icons-two-tone"><%= sub_entry[:icon] %></i></span>
+      <% end %>
+      <span class="pc-mtext" data-i18n="<%= i18n_from_title(prefix: 'nav.', title: (parents + [sub_entry]).collect { |item| item[:title] }.join(' ')) %>"><%= sub_entry[:title] %></span>
+      <% if sub_entry[:children].present? %>
+        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+      <% end %>
+    </a>
+    <% if sub_entry[:children].present? %>
+      <ul class="pc-submenu">
+        <%= render partial: 'shared/nav_sub_entry', collection: sub_entry[:children], as: :sub_entry, locals: { parents: parents + [sub_entry] } %>
+      </ul>
+    <% end %>
+  </li>
+<% end %>
+
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">home</i></span><span-->
+<!--    class="pc-mtext">Dashboard</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/index.html">Sales</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/dashboard-analytics.html">Analytics</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link"><span class="pc-micon"><i class="material-icons-two-tone">layers</i></span><span-->
+<!--    class="pc-mtext">Layouts</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-collapse.html">Collapse</a>-->
+<!--    </li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link"-->
+<!--                           href="../navigation/layout-horizontal.html">Horizontal</a></li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-horizontal2.html">Horizontal-->
+<!--      v2</a></li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-modern.html">Modern</a></li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-advance.html">Advance</a></li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-creative.html">Creative</a>-->
+<!--    </li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-topbar.html">Topbar</a></li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-tab.html">Tab</a></li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-nested.html">Nested</a></li>-->
+<!--    <li class="pc-item"><a target="_blank" class="pc-link" href="../navigation/layout-navtoggler.html">Navbar-->
+<!--      Toggle</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">card_giftcard</i></span><span class="pc-mtext">Widget</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/widget-statistic.html">Statistic</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/widget-data.html">Data</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/widget-chart.html">Chart</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">account_circle</i></span><span class="pc-mtext">User</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/user-profile.html">Profile</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/user-profile-social.html">Social Profile</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/user-card.html">User Card</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../navigation/user-list.html">User List</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>Elements</label>-->
+<!--  <span>UI Components</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">business_center</i></span><span class="pc-mtext">Basic</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_alert.html">Alert</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_button.html">Button</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_badges.html">Badges</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_breadcrumb-pagination.html">Breadcrumb &-->
+<!--      pagination</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_card.html">Cards</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_collapse.html">Collapse</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_color.html">Color</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_carousel.html">Carousel</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_dropdowns.html">Dropdowns</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_grid.html">Grid system</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_offcanvas.html">Offcanvas</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_progress.html">Progress</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_list-group.html">List group</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_modal.html">Modal</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_spinner.html">Spinner</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_tabs.html">Tabs & pills</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_typography.html">Typography</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_tooltip-popover.html">Tooltip & popovers</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_toasts.html">Toasts</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/bc_extra.html">Other</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">widgets</i></span><span-->
+<!--    class="pc-mtext">Advance</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_alert.html">Sweet alert</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_datepicker-componant.html">Datepicker</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_lightbox.html">Lightbox</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_modal.html">Model</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_notification.html">Notification</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_pnotify.html">Pnotify</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_rangeslider.html">Rangeslider</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_slider.html">Slider</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_syntax_highlighter.html">Syntax highlighter</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_tour.html">Tour</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/ac_treeview.html">Tree view</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">history_edu</i></span><span-->
+<!--    class="pc-mtext">Icons</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/icon-feather.html">Feather</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/icon-fontawsome.html">Font Awesome 5</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/icon-material.html">Material</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../elements/icon-tabler.html">Tabler</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>Forms</label>-->
+<!--  <span>40+ Ready to Use From plugins</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">edit</i></span><span-->
+<!--    class="pc-mtext">Forms Elements</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form_elements.html">Form Basic</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form_floating.html">Form Floating</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_basic.html">Form Options</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_input_group.html">Input Groups</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_checkbox.html">Checkbox</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_radio.html">Radio</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_switch.html">Switch</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_megaoption.html">Mega option</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">brush</i></span><span-->
+<!--    class="pc-mtext">Forms Plugins</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a class="pc-link" href="#">Date<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/form2_datepicker.html">Datepicker</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/form2_daterangepicker.html">Date Range Picker</a>-->
+<!--        </li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/form2_timepicker.html">Timepicker</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a class="pc-link" href="#">Select<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/form2_choices.html">Choices js</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_recaptcha.html">Google reCaptcha</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_inputmask.html">Input Masks</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_clipboard.html">Clipboard</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_nouislider.html">Nouislider</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_switchjs.html">Bootstrap Switch</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_typeahead.html">Typeahead</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">chrome_reader_mode</i></span><span class="pc-mtext">Text-->
+<!--			Editors</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_tinymce.html">Tinymce</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_quill.html">Quill</a></li>-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a class="pc-link" href="#">CK editor<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/editor-classic.html">classic</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/editor-document.html">Document</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/editor-inline.html">Inline</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../forms/editor-balloon.html">Balloon</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_markdown.html">Markdown</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">view_compact</i></span><span-->
+<!--    class="pc-mtext">Form Layouts</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_lay-default.html">Layouts</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_lay-multicolumn.html">Multicolumn</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_lay-actionbars.html">Actionbars</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_lay-stickyactionbars.html">Sticky Action bars</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">backup</i></span><span-->
+<!--    class="pc-mtext">File upload</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/file-upload.html">Dropzone</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../forms/form2_flu-uppy.html">Uppy</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item"><a href="form-validation.html" class="pc-link "><span class="pc-micon"><i-->
+<!--  class="material-icons-two-tone">fact_check</i></span><span class="pc-mtext">Form Validation</span></a>-->
+<!--</li>-->
+<!--<li class="pc-item"><a href="image_crop.html" class="pc-link "><span class="pc-micon"><i-->
+<!--  class="material-icons-two-tone">picture_in_picture_alt</i></span><span class="pc-mtext">Image-->
+<!--			cropper</span></a></li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>table</label>-->
+<!--  <span>Advance Datatable Integrated</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">table_rows</i></span><span-->
+<!--    class="pc-mtext">Bootstrap table</span><span class="pc-arrow"><i-->
+<!--    data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_bootstrap.html">Basic table</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_sizing.html">Sizing table</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_border.html">Border table</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_styling.html">Styling table</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">table_view</i></span><span-->
+<!--    class="pc-mtext">Data table</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-simple.html">Basic initialization</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-dynamic-import.html">Dynamic Import</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-render-column-cells.html">Render Column Cells</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-column-manipulation.html">Column Manipulation</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-datetime-sorting.html">Datetime Sorting</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-methods.html">Methods</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-add-rows.html">Add Rows</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-fetch-api.html">Fetch API</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-filters.html">Filters</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../table/tbl_dt-export.html">Export</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>Chart & Maps</label>-->
+<!--  <span>Tones of readymade charts</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">bubble_chart</i></span><span-->
+<!--    class="pc-mtext">Chart</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../chart-maps/chart-apex.html">Apex Chart</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../chart-maps/chart-chartjs.html">Chart js</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../chart-maps/chart-google.html">Google</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../chart-maps/chart-highchart.html">Highchart</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">my_location</i></span><span-->
+<!--    class="pc-mtext">Maps</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../chart-maps/map-google.html">Google</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../chart-maps/map-api.html">Google API</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../chart-maps/map-vector.html">Vector</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>Admin Panel</label>-->
+<!--  <span>7+ Admin Panel Demos</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link"><span class="pc-micon"><i class="material-icons-two-tone">healing</i></span><span-->
+<!--    class="pc-mtext">Hospital</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/hospital-dashboard.html">Dashboard</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/hospital-department.html">Department</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/hospital-doctor.html">Doctor</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/hospital-patient.html">Patient</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/hospital-nurse.html">Nurse</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/hospital-pharmacist.html">Pharmacist</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/hospital-laboratorie.html">Laboratory</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">assignment_ind</i></span><span class="pc-mtext">Membership</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/member-dashboard.html">Dashboard</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/member-mail-template.html">Email templates</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/member-countries.html">Country</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/member-coupons.html">Coupons</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/member-newsletter.html">Newsletter</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/member-user.html">User</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/member-membership.html">Membership</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">support</i></span><span-->
+<!--    class="pc-mtext">Helpdesk</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/help-dashboard.html">Helpdesk dashboard</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/help-create-ticket.html">Create ticket</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/help-ticket.html">ticket list</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/help-ticket-details.html">ticket Details</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/help-customer.html">Customer</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">school</i></span><span-->
+<!--    class="pc-mtext">School</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/school-dashboard.html">Dashboard</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/school-student.html">Student</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/school-parents.html">Parents</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/school-teacher.html">Teacher</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link" data-bs-toggle="tooltip" title="Student Information System"><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">portrait</i></span><span class="pc-mtext">SIS</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/sis-dashboard.html">Dashboard</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/sis-leave.html">Leave</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/sis-evaluation.html">Evaluation</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/sis-event.html">Event</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/sis-circular.html">Circular</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/sis-course.html">Course</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link"><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">monetization_on</i></span><span class="pc-mtext">Crypto</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-dashboard.html">Dashboard</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-exchange.html">Exchange</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-wallet.html">Wallet</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-transactions.html">Transactions</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-history.html">History</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-trading.html">Trading</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-initial-coin.html">Initial coin</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/crypto-ico-listing.html">Ico listing</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link"><span class="pc-micon"><i class="material-icons-two-tone">local_mall</i></span><span-->
+<!--    class="pc-mtext">E-Commerce</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-product.html">Product</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-product-list.html">Product list</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-product-details.html">Product details</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-order.html">Order</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-checkout.html">Checkout</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-cart.html">Shopping Cart</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-customers.html">Customers</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../admin-panel/ecom-sellers.html">Sellers</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>Pages</label>-->
+<!--  <span>15+ Redymade Pages</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link"><span class="pc-micon"><i class="material-icons-two-tone">https</i></span><span-->
+<!--    class="pc-mtext">Authentication</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a href="#!" class="pc-link">Variant 1<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-signup.html" target="_blank">Sign up</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-signin.html" target="_blank">Sign in</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-reset-password.html" target="_blank">Reset-->
+<!--          password</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-change-password.html" target="_blank">Change-->
+<!--          password</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a href="#!" class="pc-link">Variant 2<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-signup-img-side.html" target="_blank">Sign-->
+<!--          up</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-signin-img-side.html" target="_blank">Sign-->
+<!--          in</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-reset-password-img-side.html"-->
+<!--                               target="_blank">Reset-->
+<!--          password</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-change-password-img-side.html"-->
+<!--                               target="_blank">Change-->
+<!--          password</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a href="#!" class="pc-link">Variant 3<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-signup-3.html" target="_blank">Sign up</a>-->
+<!--        </li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-signin-3.html" target="_blank">Sign in</a>-->
+<!--        </li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-reset-password-3.html" target="_blank">Reset-->
+<!--          password</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../pages/auth-change-password-3.html"-->
+<!--                               target="_blank">Change-->
+<!--          password</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../pages/auth-profile-settings.html" target="_blank">Profile-->
+<!--      settings</a>-->
+<!--    </li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../pages/auth-tabs.html" target="_blank">Tabs Authentication</a>-->
+<!--    </li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../pages/auth-lockscreen.html" target="_blank">Lockscreen</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">admin_panel_settings</i></span><span-->
+<!--    class="pc-mtext">Maintenance</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../pages/maint-error.html">Error</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../pages/maint-offline-ui.html" target="_blank">Offline UI</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../pages/maint-maintance.html" target="_blank">Maintenance</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>App</label>-->
+<!--  <span>Creative application design</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">drafts</i></span><span-->
+<!--    class="pc-mtext">Email</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/email_inbox.html">Inbox</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/email_read.html">Read mail</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/email_compose.html">Compose mail</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item"><a href="../apps/email-v2.html" class="pc-link "><span class="pc-micon"><i-->
+<!--  class="material-icons-two-tone">mark_email_unread</i></span><span class="pc-mtext">Email v2</span></a>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">assignment</i></span><span-->
+<!--    class="pc-mtext">Task</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/task-list.html">List</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/task-board.html">Board</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/task-detail.html">Detail</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item">-->
+<!--  <a href="../apps/todo.html" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">library_add_check</i></span><span class="pc-mtext">To-Do</span></a>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">photo_library</i></span><span class="pc-mtext">Gallery</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/gallery-grid.html">Grid</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../apps/gallery-masonry.html">Masonry</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>Extension</label>-->
+<!--  <span>fabulous Extension Page</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--    class="material-icons-two-tone">contact_support</i></span><span class="pc-mtext">Faq</span><span-->
+<!--    class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../extension/page-faq.html">Faq 1</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../extension/page-faq2.html">Faq 2</a></li>-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a class="pc-link" href="#!">Faq 3<span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="../extension/page-faq3.html">view</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../extension/page-faq3-category.html">Category</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="../extension/page-faq3-details.html">Details</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">receipt</i></span><span-->
+<!--    class="pc-mtext">Invoice</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="../extension/page-invoice.html">Invoice</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../extension/page-invoice-summary.html">Invoice Summary</a></li>-->
+<!--    <li class="pc-item"><a class="pc-link" href="../extension/page-invoice-list.html">Invoice List</a></li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item"><a href="../extension/full-calendar.html" class="pc-link "><span class="pc-micon"><i-->
+<!--  class="material-icons-two-tone">today</i></span><span class="pc-mtext">Full calendar</span></a></li>-->
+<!--<li class="pc-item pc-caption">-->
+<!--  <label>Other</label>-->
+<!--  <span>Extra more things</span>-->
+<!--</li>-->
+<!--<li class="pc-item pc-hasmenu">-->
+<!--  <a href="#!" class="pc-link"><span class="pc-micon"><i class="material-icons-two-tone">list_alt</i></span><span-->
+<!--    class="pc-mtext">Menu levels</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>-->
+<!--  <ul class="pc-submenu">-->
+<!--    <li class="pc-item"><a class="pc-link" href="#!">Menu Level 2.1</a></li>-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a href="#!" class="pc-link">Menu level 2.2<span class="pc-arrow"><i-->
+<!--        data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="#!">Menu level 3.1</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="#!">Menu level 3.2</a></li>-->
+<!--        <li class="pc-item pc-hasmenu">-->
+<!--          <a href="#!" class="pc-link">Menu level 3.3<span class="pc-arrow"><i-->
+<!--            data-feather="chevron-right"></i></span></a>-->
+<!--          <ul class="pc-submenu">-->
+<!--            <li class="pc-item"><a class="pc-link" href="#!">Menu level 4.1</a></li>-->
+<!--            <li class="pc-item"><a class="pc-link" href="#!">Menu level 4.2</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--    <li class="pc-item pc-hasmenu">-->
+<!--      <a href="#!" class="pc-link">Menu level 2.3<span class="pc-arrow"><i-->
+<!--        data-feather="chevron-right"></i></span></a>-->
+<!--      <ul class="pc-submenu">-->
+<!--        <li class="pc-item"><a class="pc-link" href="#!">Menu level 3.1</a></li>-->
+<!--        <li class="pc-item"><a class="pc-link" href="#!">Menu level 3.2</a></li>-->
+<!--        <li class="pc-item pc-hasmenu">-->
+<!--          <a href="#!" class="pc-link">Menu level 3.3<span class="pc-arrow"><i-->
+<!--            data-feather="chevron-right"></i></span></a>-->
+<!--          <ul class="pc-submenu">-->
+<!--            <li class="pc-item"><a class="pc-link" href="#!">Menu level 4.1</a></li>-->
+<!--            <li class="pc-item"><a class="pc-link" href="#!">Menu level 4.2</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</li>-->
+<!--<li class="pc-item disabled"><a href="#!" class="pc-link "><span class="pc-micon"><i-->
+<!--  class="material-icons-two-tone">power_off</i></span><span class="pc-mtext">Disabled menu</span></a></li>-->
+<!--<li class="pc-item"><a href="../other/sample-page.html" class="pc-link "><span class="pc-micon"><i-->
+<!--  class="material-icons-two-tone">storefront</i></span><span class="pc-mtext">Sample page</span></a></li>-->

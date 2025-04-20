@@ -1,0 +1,105 @@
+/**======================================================================
+=========================================================================
+Template Name: DashboardKit - Most Complete Bootstrap Admin Template
+Author: DashboardKit
+Support: dashboardkit@gmail.com
+File: style.css
+=========================================================================
+=================================================================================== */
+// theme font
+// main framework
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "settings/custom-variables";
+@import "settings/theme-variables"; // ============================
+//     Advance Layout css start
+// ============================
+$content-shadow: inset 0 1px 20px rgba(69, 90, 100, 0.08);
+
+.creative-layout {
+    background-color: $card-bg;
+    min-height: 100vh;
+    padding-bottom: 70px;
+    @media (min-width: 1025px) {
+        .pc-sidebar {
+            box-shadow: none;
+            .m-header {
+                background-color: $card-bg;
+            }
+            .navbar-content {
+                height: calc(100vh - #{$header-height});
+            }
+        }
+
+        .page-header {
+            background: transparent;
+            box-shadow: none;
+            position: absolute;
+            top: 10px;
+            left: 0;
+        }
+
+        .pc-header {
+            z-index: 1026;
+            // box-shadow: $header-shadow;
+            box-shadow: none;
+
+            .m-header {
+                width: calc(#{$sidebar-width} - 15px);
+            }
+        }
+
+        .pc-container {
+            // background: shift-color($primary, -90%);
+            background: $body-bg;
+            box-shadow: $content-shadow;
+            border-radius: 14px 14px 0 0;
+            margin-right: 30px;
+            height: calc(100vh - 70px);
+            overflow: scroll;
+            border: 1px solid rgba(69, 90, 100, 0.08);
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            .page-header + .row {
+                padding-top: 0;
+            }
+
+            .pcoded-content {
+                padding-top: calc(40px + 35px);
+            }
+        }
+    }
+    @media (max-width: 1920px) {
+        .pc-header {
+            &.dark-header,
+            &[class*="bg-"] {
+                .pc-head-link {
+                    color: $header-color !important;
+                }
+            }
+
+            .b-brand {
+                display: none;
+            }
+        }
+
+        .pc-container {
+            background: $body-bg;
+        }
+
+        .pc-sidebar {
+            .m-header{
+                background: $card-bg;
+            }
+            .navbar-content {
+                height: 100vh;
+            }
+        }
+    }
+
+    .pct-customizer {
+        display: none;
+    }
+}
+// Advance Layout css end

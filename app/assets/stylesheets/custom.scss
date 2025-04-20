@@ -1,0 +1,41 @@
+.td-compact {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.form-control-small {
+  padding: 0.235rem 1rem;
+  height: calc(1.47em + 1rem + 2px);
+}
+
+.input-file-small {
+  height: calc(1.47em + 1rem + 2px);
+  padding: 0.435rem 1rem;
+}
+
+.choices__inner {
+  padding: 0.235rem 1rem;
+  height: calc(1.47em + 1rem + 2px);
+  min-height: 0!important;
+}
+
+.btn-sm {
+  border-radius: 6px;
+}
+
+.turbo-progress-bar {
+  height: 5px;
+  background-color: $primary;
+}
+
+.red-border {
+  border-color: $danger!important;
+}
+
+.green-border {
+  border-color: $success!important;
+}
+
+.remove-badge-filter {
+  cursor: pointer;
+}

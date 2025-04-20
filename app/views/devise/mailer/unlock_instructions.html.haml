@@ -1,0 +1,13 @@
+- content_for :page_title, t('devise.mailer.unlock_instructions.subject')
+
+%p= t('.hello_html', full_name: @resource.full_name)
+%p= t('.account_locked')
+%p= t('.click_to_unlock')
+%p= link_to t('.unlock_button'), unlock_url(@resource, unlock_token: @token, locale: I18n.locale, host: @resource.company.host), class: 'btn btn-primary'
+
+%p
+  %br
+  %br
+  –––––––––––––––––––––––––––
+  %br
+  Questo messaggio è stato generato automaticamente, si prega di non rispondere a questa mail.

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "calendar-quizapp",
+  "private_key_id": "d8c1d7aed3ed27c0eb85838122251cd4e0123a3c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCriqoOVkqlJmwS\ndsV+bD63JKyxbFQTttGgO8k+s41VqGlU1SBSGUGx8I+qQviX/bq6J0S/bvZP9/q8\nSU6ea8vfL35JgPEt2/vsr3X7QhwYC8bY5OVxKx6hP4qZ39/Bo0YEiFtUwH3OS0G1\nQRKgYF9+DQA2/c+q+rkHwZ0ui8v0iAem3177X2025N2XYw0aclq/temk4HWOMvbx\nJPHlQCulsdpB7WJ95CR/Ar2ykPAvEGT+wEKBEO4sPrUbeLrpxHUZTRODS+hx+Kp4\nfc9GxKTsGrDvWSO6qr9l8Fb5Nvqe9CH//f7L/WB0nJW7QWbv4r1TN0WkRoEAfi2B\nXsSS4Qs/AgMBAAECggEALmxwaUDhIqCrTrPl7rjMoDPEqJ9wgYVQZdTIObfN4Aib\nuOGUxaMgLE+2EZXeQQPhrM9Dw6r77dhmet478JOrsNLhknLa0lZeb0ds3nqdr8RA\nJCKOFXpd57WShOIZZAYTxNZCIUWWxmWHes4JhG2QakSKclduBA+mU3sKVrZuk9Zq\n9dHV9tahobIbj9RzkoB93H4c+0McR5Ojabls2kRuTdDXwzqAgTwJspDxDsdx72v8\nimKTo8sX2kaUj6v4uFE0SpDgnjq5ZxF5jLrZ1K/Cixm/XsI5FYgseBE7KZLhbTcn\nMeD/al1qbVcwqDZvy8aTPKCXo33iUnSebRdpW1DrAQKBgQDabplkZeZdOVjtiJ+5\n5qCocL4YHT4osVXegnCFiwCC2QFBs0XDdwb5+lxPoloSXI28ksxO5ao3FFCfT01v\naqJUo8jYNj6ByEPNwIFERRtb0BXwJkX8nTMZZrK5uBKlYr5Vr79I6lRT7qhYs9zY\nM82vTwHMwPZgGCIxBIaK3wRNjwKBgQDJC4RHXNNashcBPCSeRh7TfgXie/hVQNzv\n0xhTlp8lXFk4FHQRLI63/aBB9RJAc4HoapR8O7GafptPGLgMgLjdqYT+deGG+BHs\nVU944lh3fNZMRH2eoan3DfBRO9vGDKCpMf0ao7Kt6ZUecAXe9JI9bc9VfqhhVfT5\nHUP7iiTvUQKBgCNKEwYhYGJXTYKyu/twwyvzawLCVrSEUfcs47jviBmbrZRLvk2i\nAUKJrDhBZoPo6A07Oj7U4/caFRxn137Un31FKMGlodud2zZ2j2vULmNa7vBpfo0d\naJAGA4H1ty15En8Ncb35/b3BpPkPtfJIDEbyYLwPwL4tp/h7XrE47p0JAoGAR1BV\ngLbVpfNMI70AxD/dSWoHjlopMZyLgmqf0263Txpd732Z2kmy6mMGCL901PXkG9xK\nhXLrQgEs+DateoniiYZLTbPk5upx+SIdyaSIewIGRhF5ed6gmqkQGNCh2bO6/alk\nvaFZjUUxBxX3jym0AiREinAeLEDAX+lYpw5OobECgYEAivumbpDCiozo0WZRjhqB\ndcRjEPCM1leWq5Sgm89YYbaKdqsmdGWDv6/0LfT/bogwy/Zbrt8O9Yyrfusj6dbx\n+1VYsJ3WkXjhriSPT+ma7HJ9xXrxvz5CwgIIBveBMJyqS2bh/T9E1thXTbA+wFRV\nk2RgASmio1qyRLqmGMUyB1E=\n-----END PRIVATE KEY-----\n",
+  "client_email": "quizappuser@calendar-quizapp.iam.gserviceaccount.com",
+  "client_id": "112289678120702297160",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/quizappuser%40calendar-quizapp.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

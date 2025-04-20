@@ -1,0 +1,33 @@
+= content_tag :tr, id: dom_id(report) do
+  %td.text-center.td-compact{class: report.ended_at.present? ? '' : 'refresh'}
+    = report_state_icon(report)
+  %td= report.aasm.human_state
+  %td
+    - desc = "#{report.params['report_name']}"
+    - if report.exported? and report.total_rows_count == 0
+      - desc += ' <b>(Nessun record trovato)</b>'
+    = desc.html_safe
+  %td.text-center
+    - content = ''
+    - filter_label(report.filters).each do |label|
+      - content = "#{content}#{label}<br>".html_safe
+    - if content.present?
+      %button.btn.btn-sm.btn-info{class: "#{'disabled' if report.created? or report.started?}", "data-bs-content" => content.gsub("'", '&#39;').html_safe, "data-bs-html" => "true", "data-bs-placement" => "top", "data-bs-toggle" => "popover", type: "button"}
+        %i.feather.icon-filter
+        = "Filtri applicati: #{filter_label(report.filters).count}"
+  %td.align-middle
+    - if report.total_rows_count != 0
+      - progress = report.processed_rows_count.to_f / report.total_rows_count.to_f * 100
+      - progress = 100 if progress > 100
+      .progress{style: 'height: 15px'}
+        .progress-bar.bg-success{:style => "width:#{progress}%", class: "#{'progress-bar-striped progress-bar-animated' if progress < 100}"}
+          %small.fw-bold{style: 'margin-left: 5px;margin-top: 1px;color: #323232FF'}= number_to_percentage(progress)
+  %td.text-center.td-compact= report.started_at.strftime("%d/%m/%Y %H:%M") if report.started_at.present?
+  %td.text-center.td-compact= report.ended_at.strftime("%d/%m/%Y %H:%M") if report.ended_at.present?
+  %td.td-compact.text-end
+    - if report.file.attached?
+      = link_to rails_blob_path(report.file, disposition: "attachment"), class: 'btn btn-sm btn-primary', data: {turbo: false, bs_toggle: 'tooltip', bs_placement: 'top'}, title: 'Scarica Report' do
+        %i.feather.icon-download
+      \
+    = link_to '#', class: "btn btn-sm btn-danger #{'disabled' if report.started?}", data: { bs_toggle: 'tooltip', bs_placement: 'top', controller: 'confirm', action: 'confirm#click', "confirm-title-value": "Elimina Report", "confirm-message-value": "Sei sicuro?", "confirm-ok-button-value": 'Elimina', "confirm-method-value": "delete", "confirm-url-value": manager_report_path(report.id)}, title: 'Elimina' do
+      %i.feather.icon-trash-2
